@@ -19,7 +19,7 @@ public class Main {
         MongoDatabase database = ConexionMongo.getInstance().getDatabase();
 
         // 2. Obtenemos la colección.
-        // ¡IMPORTANTE!: Asegúrate de que en Atlas la colección se llame "barrios_2019"
+        // ¡IMPORTANTE!: Asegúrate de que en Atlas la colección se llame "barrios"
         MongoCollection<Document> collection = database.getCollection("barrios");
 
         System.out.println("Conexión establecida a la base de datos: " + database.getName());
@@ -72,7 +72,7 @@ public class Main {
                 )
         );
 
-        // Se pasan las etapas en orden dentro de una lista [cite: 15, 38]
+        // Se pasan las etapas en orden dentro de una lista
         collection.aggregate(Arrays.asList(sortStage, limitStage, projectStage))
                 .forEach(doc -> System.out.println(doc.toJson()));
     }
